@@ -17,6 +17,7 @@ import {fetchGoals} from "./actions/goals.actions";
 
 import GoalsListContainer from './components/goalsList';
 import GoalView from './components/goal.view';
+import GoalEditView from './components/goal-edit.view';
 
 export default function native() {
 
@@ -36,6 +37,7 @@ export default function native() {
 
                             <Route name="goals" component={GoalsListContainer} initial={true} title="Goals"/>
                             <Route name="goal" component={GoalView}/>
+                            <Route name="newGoal" component={GoalEditView}/>
                         </Router>
                     </View>
                 </Provider>
