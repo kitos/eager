@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
+var {routerReducer} = require('react-native-redux-router');
 import goals from './goals'
 
 const rootReducer = combineReducers({
-    goals
+    goals,
+    routerReducer
 });
 
 export default rootReducer;
