@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "server": "node src/server/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/kitos/eager#readme",
   "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12",
     "react": "^0.14.8",
     "react-native": "^0.23.1"
   }
