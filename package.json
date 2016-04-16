@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/kitos/eager#readme",
   "dependencies": {
-    "react": "^15.0.1",
+    "react": "^0.14.8",
     "react-native": "^0.23.1"
   }
 }
