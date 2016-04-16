@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-var {routerReducer} = require('react-native-redux-router');
+import {routerReducer} from 'react-native-redux-router';
 import goals from './goals'
 
 const rootReducer = combineReducers({
