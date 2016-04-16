@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
     }
 });
 
-/* */
-
 const GoalListItemComponent = (props) =>(
     <View>
         <TouchableNativeFeedback
