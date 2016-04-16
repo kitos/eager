@@ -3,7 +3,8 @@ import * as ListView from "react-native/Libraries/CustomComponents/ListView/List
 
 const initialState = {
     goals: [],
-    isFetching: true
+    isFetching: false,
+    isInited: false
 };
 
 export default function goals(state = initialState, action) {
@@ -11,7 +12,7 @@ export default function goals(state = initialState, action) {
         case REQUEST_GOALS:
             return {...state, isFetching: true};
         case RECEIVE_GOALS:
-            return {...state, isFetching: false, goals: action.payload};
+            return {...state, isFetching: false, isInited: true, goals: action.payload};
         case GOAL_SAVED:
             return {...state, goals: state.goals.concat([action.payload])};
         default:

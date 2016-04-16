@@ -2,7 +2,8 @@ import React, {
     AppRegistry,
     Component,
     Text,
-    View
+    View,
+    BackAndroid
 } from 'react-native';
 
 import {
@@ -44,5 +45,8 @@ export default function native() {
             );
         }
     }
+
+    BackAndroid.addEventListener('hardwareBackPress', () => true);
+
     AppRegistry.registerComponent('Eager', () => Eager);
 }
