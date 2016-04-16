@@ -1,4 +1,4 @@
-import {getJson, postJson, putJson} from '../utils/ajax';
+import {getJson, postJson, putJson, deleteJson} from '../utils/ajax';
 
 export const REQUEST_GOALS = 'request_goals';
 
@@ -13,7 +13,7 @@ export const RECEIVE_GOALS = 'receive_goals';
 export function receiveGoals(goals) {
     return {
         type: RECEIVE_GOALS,
-        payload:goals
+        payload: goals
     }
 }
 
@@ -43,5 +43,15 @@ export function saveGoal(goal) {
         return (goal._id ? putJson : postJson)('http://192.168.1.239:3000/goals' + (goal._id ? '/' + goal._id : ''), goal)
             .then(savedGoal => dispatch(goalSaved(savedGoal)))
             .catch(error => dispatch(goalSaved(error, true)));
+    }
+}
+
+export const REMOVE_GOAL = 'remove_goal';
+
+export function removeGoal(goal) {
+    return (dispatch) => {
+        return deleteJson('http://192.168.1.239:3000/goals/' + goal.id)
+            .then(goals => dispatch(fetchGoals(goals)))
+            .catch(error => dispatch(receiveGoals([JSON.stringify(error)])));
     }
 }

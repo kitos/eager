@@ -1,4 +1,8 @@
-import React, {Text, View, TouchableNativeFeedback, StyleSheet} from 'react-native';
+import React, {Text,
+    View,
+    TouchableNativeFeedback,
+    StyleSheet,
+    ProgressBarAndroid} from 'react-native';
 
 const styles = StyleSheet.create({
     container:{
@@ -18,13 +22,22 @@ const styles = StyleSheet.create({
 });
 
 const GoalListItemComponent = (props) =>(
-    <View>
+    <View style={{flexDirection: 'row'}}>
         <TouchableNativeFeedback
+            style={{flex: 1}}
             onPress={props.onGoalPress}
             background={TouchableNativeFeedback.SelectableBackground()}>
             <View style={styles.container}>
                 <Text>
                     {props.goal.title}
+                </Text>
+            </View>
+        </TouchableNativeFeedback>
+        <TouchableNativeFeedback
+            onPress={props.onRemoveGoalPress}>
+            <View >
+                <Text>
+                    Delete
                 </Text>
             </View>
         </TouchableNativeFeedback>

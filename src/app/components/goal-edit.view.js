@@ -1,6 +1,8 @@
 import React, {View, Text, TouchableNativeFeedback, TextInput} from 'react-native';
 import {connect} from "react-redux";
 
+import  * as Button from 'apsl-react-native-button';
+
 import {saveGoal} from './../actions/goals.actions';
 
 class GoalEditView extends React.Component {
@@ -19,16 +21,13 @@ class GoalEditView extends React.Component {
                 <TextInput placeholder="Goal title" value={this.state.title} onChangeText={title => this.setState({title})} />
                 <TextInput placeholder="Goal description" multiline={true} numberOfLines={3}
                            value={this.state.description} onChangeText={description => this.setState({description})} />
-                <TouchableNativeFeedback onPress={() => this.props.onSaveGoal({title: this.state.title, description: this.state.description})}>
-                    <View>
-                        <Text>Save</Text>
-                    </View>
-                </TouchableNativeFeedback>
-                <TouchableNativeFeedback onPress={() => this.props.routes.goals()}>
-                    <View>
-                        <Text>Back</Text>
-                    </View>
-                </TouchableNativeFeedback>
+                <Button onPress={() => this.props.onSaveGoal({title: this.state.title, description: this.state.description})}>
+                        Save
+                </Button>
+                <Button onPress={() => this.props.routes.goals()}>
+                        Back
+                </Button>
+
             </View>
         )
     }
