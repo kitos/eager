@@ -3,6 +3,7 @@ import React, {Text,
     TouchableNativeFeedback,
     StyleSheet,
     ProgressBarAndroid} from 'react-native';
+import Button from  'apsl-react-native-button';
 
 const styles = StyleSheet.create({
     container:{
@@ -33,14 +34,10 @@ const GoalListItemComponent = (props) =>(
                 </Text>
             </View>
         </TouchableNativeFeedback>
-        <TouchableNativeFeedback
-            onPress={props.onRemoveGoalPress}>
-            <View >
-                <Text>
-                    Delete
-                </Text>
-            </View>
-        </TouchableNativeFeedback>
+        <Button onPress={props.onRemoveGoalPress}
+        style={{backgroundColor:'red'}}>
+            Delete
+        </Button>
         <View style={styles.hr}/>
     </View>
 );

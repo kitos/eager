@@ -1,7 +1,7 @@
 import React, {View, Text, TouchableNativeFeedback, TextInput} from 'react-native';
 import {connect} from "react-redux";
 
-import  * as Button from 'apsl-react-native-button';
+import Button from  'apsl-react-native-button';
 
 import {saveGoal} from './../actions/goals.actions';
 
