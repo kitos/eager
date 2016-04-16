@@ -1,7 +1,7 @@
 import React, {View, ListView, Text, StyleSheet, TouchableNativeFeedback, RefreshControl, StatusBar} from "react-native";
 import {connect} from "react-redux";
 import GoalListItemComponent from './goalListItem';
-import {fetchGoals, removeGoal} from './../actions/goals.actions';
+import {fetchGoals, removeGoal} from './../../actions/goals.actions';
 
 const styles = StyleSheet.create({
     container: {

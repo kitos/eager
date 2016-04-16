@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import Button from  'apsl-react-native-button';
 
-import {saveGoal} from './../actions/goals.actions';
+import {saveGoal} from './../../actions/goals.actions';
 
 class GoalEditView extends React.Component {
 

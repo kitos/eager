@@ -1,3 +1,4 @@
+var path = require('path');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -9,6 +10,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(express.static(path.join(__dirname, 'static')));
 app.use(goalsApi());
 
 mongoose.connect('mongodb://admin:123123@ds030829.mlab.com:30829/eager');

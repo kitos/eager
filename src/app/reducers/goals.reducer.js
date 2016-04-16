@@ -1,5 +1,4 @@
 import {RECEIVE_GOALS, REQUEST_GOALS, GOAL_SAVED} from '../actions/goals.actions';
-import * as ListView from "react-native/Libraries/CustomComponents/ListView/ListView";
 
 const initialState = {
     goals: [],

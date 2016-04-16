@@ -16,9 +16,9 @@ import {Router, Route, Animations, Schema} from 'react-native-redux-router';
 import configureStore from './configureStore';
 import {fetchGoals} from "./actions/goals.actions";
 
-import GoalsListContainer from './components/goalsList';
-import GoalView from './components/goal.view';
-import GoalEditView from './components/goal-edit.view';
+import GoalsListContainer from './components/native/goalsList';
+import GoalView from './components/native/goal.view';
+import GoalEditView from './components/native/goal-edit.view';
 
 export default function native() {
 
