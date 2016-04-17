@@ -32,7 +32,7 @@ export default class LogTimeDialog extends React.Component {
                 <DatePicker value={this.state.timelog.date}
                             disableYearSelection={true}
                             defaultDate={new Date()}
-                            
+                            firstDayOfWeek={1}
                             onChange={(oldval, newval) => this.handleDateChange(newval)}/>
             </Dialog>
         );
