@@ -13,6 +13,8 @@ import goalsReducer from './reducers/goals.reducer';
 import newGoal from './reducers/goal-dialog.reducer';
 import {fetchGoals} from './actions/goals.actions';
 
+import logTime from './reducers/log-time-dialog.reducer'
+
 import App from './components/dom/app.component';
 import GoalListPage from './components/dom/pages/goal-list.page';
 import GoalPage from './components/dom/pages/goal.page';
@@ -26,6 +28,7 @@ let store = createStore(
     combineReducers({
         goals: goalsReducer,
         newGoal,
+        logTime,
         routing: routerReducer
     }),
     applyMiddleware(thunkMiddleware, middleware)

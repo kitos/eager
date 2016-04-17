@@ -55,5 +55,48 @@ module.exports = () => {
                 response.send(err);
             }));
 
+    router.route('/goals/:id/timelogs/')
+        .post((request, response) => {
+            Goal.findById(request.params.id)
+                .then(goal => {
+                    goal.timelogs.push({
+                        /*_id: new mongoose.Types.ObjectId,*/
+                        time: request.body.time,
+                        date: request.body.date
+                    });
+                    return goal.save();
+                }).then(updatedGoal => response.json(updatedGoal))
+                .catch(err => {
+                    response.status(500);
+                    response.send(err);
+                })
+        });
+
+    router.route('/goals/:id/timelogs/:logid')
+        .delete((request, response) => {
+            Goal.findById(request.params.id)
+                .then(goal =>{
+                    goal.timelogs.id(request.params.logid).remove();
+                    return goal.save();
+                }).then(updatedGoal => response.json(updatedGoal))
+                .catch(err => {
+                    response.status(500);
+                    response.send(err);
+                })
+        })
+        .put((request, response) => {
+            Goal.findById(request.params.id)
+                .then(goal =>{
+                    //todo find a way to edit embeded record
+                    goal.timelogs.id(request.params.logid);
+                    return goal.save();
+                }).then(updatedGoal => response.json(updatedGoal))
+                .catch(err => {
+                    response.status(500);
+                    response.send(err);
+                })
+        });
+
+
     return router;
 };
