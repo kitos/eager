@@ -14,6 +14,8 @@ import newGoal from './reducers/goal-dialog.reducer';
 import {fetchGoals} from './actions/goals.actions';
 
 import App from './components/dom/app.component';
+import GoalListPage from './components/dom/pages/goal-list.page';
+import GoalPage from './components/dom/pages/goal.page';
 
 injectTapEventPlugin();
 
@@ -39,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => render(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/" component={App}>
-                <IndexRoute component={''}/>
+                <IndexRoute component={GoalListPage}/>
+                <Route path="goals" component={GoalListPage}/>
+                <Route path="goal/*" component={GoalPage}/>
             </Route>
         </Router>
     </Provider>,
