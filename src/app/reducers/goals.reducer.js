@@ -26,7 +26,7 @@ export default function goals(state = initialState, action) {
         case GOAL_REMOVED:
             return {...state, goals: state.goals.filter(goal => goal._id !== action.payload._id)};
         case TIMELOG_SAVED:
-            return {...state, goals: state.map(g =>{
+            return {...state, goals: state.goals.map(g =>{
                 if (g._id === action.payload._id) {
                     return {...g, ...action.payload};
                 }
