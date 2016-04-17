@@ -1,4 +1,5 @@
 import {RECEIVE_GOALS, REQUEST_GOALS, GOAL_SAVED, GOAL_REMOVED} from '../actions/goals.actions';
+import {TIMELOG_SAVED} from '../actions/log-time-dialog.actions'
 
 const initialState = {
     goals: [],
@@ -24,6 +25,13 @@ export default function goals(state = initialState, action) {
             return {...state, goals: itemHasBeenAdded ? state.goals.concat([action.payload]) : newGoals};
         case GOAL_REMOVED:
             return {...state, goals: state.goals.filter(goal => goal._id !== action.payload._id)};
+        case TIMELOG_SAVED:
+            return {...state, goals: state.map(g =>{
+                if (g._id === action.payload._id) {
+                    return {...g, ...action.payload};
+                }
+                return g
+                    })};
         default:
             return state;
     }
