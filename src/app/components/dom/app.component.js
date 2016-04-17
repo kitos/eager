@@ -10,13 +10,13 @@ import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import Star from 'material-ui/lib/svg-icons/toggle/star';
 import Add from 'material-ui/lib/svg-icons/content/add';
 import Delete from 'material-ui/lib/svg-icons/action/delete';
-import Dialog from 'material-ui/lib/dialog';
-import TextField from 'material-ui/lib/text-field';
 
-import {removeGoal} from './../../actions/goals.actions';
+import GoalEditDialog from './goal-edit-dialog.component';
+
+import {saveGoal, removeGoal} from './../../actions/goals.actions';
 import {closeNewGoalDialog, openNewGoalDialog} from './../../actions/new-goal-dialog.actions';
 
-const AppComponent = ({goals, isFetching, onDeleteGoal, newGoal, onDialogClose, onDialogOpen}) => (
+const AppComponent = ({goals, isFetching, onDeleteGoal, newGoal, onDialogClose, onDialogOpen, onSaveGoal}) => (
     <div>
         <AppBar title="Eager" showMenuIconButton={false}/>
         <List>
@@ -27,11 +27,7 @@ const AppComponent = ({goals, isFetching, onDeleteGoal, newGoal, onDialogClose, 
                                                        secondaryText={goal.description}/>)
                 : ''}
         </List>
-        <Dialog open={newGoal.open} onRequestClose={onDialogClose}>
-            <TextField floatingLabelText="Title" fullWidth={true}/>
-            <br/>
-            <TextField floatingLabelText="Description" fullWidth={true}/>
-        </Dialog>
+        <GoalEditDialog open={newGoal.open} onDialogClose={onDialogClose} onSubmit={onSaveGoal}/>
         <FloatingActionButton style={{position: 'fixed', right: 50, bottom: 50}} onTouchTap={onDialogOpen}>
             <Add/>
         </FloatingActionButton>
@@ -44,6 +40,7 @@ export default connect(
         return {
             onDialogOpen: () => dispatch(openNewGoalDialog()),
             onDialogClose: () => dispatch(closeNewGoalDialog()),
+            onSaveGoal: goal => dispatch(saveGoal(goal)),
             onDeleteGoal: goal => dispatch(removeGoal(goal))
         }
     }
