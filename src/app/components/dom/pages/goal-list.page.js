@@ -9,6 +9,8 @@ import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import Star from 'material-ui/lib/svg-icons/toggle/star';
 import Add from 'material-ui/lib/svg-icons/content/add';
 import Delete from 'material-ui/lib/svg-icons/action/delete';
+import Schedule from 'material-ui/lib/svg-icons/action/schedule';
+import Create from 'material-ui/lib/svg-icons/content/create';
 import Colors from 'material-ui/lib/styles/colors';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
@@ -33,9 +35,9 @@ const GoalListPage = ({goals, isFetching, onDeleteGoal, newGoal, logTime, newTim
                                                                    leftIcon={<Star/>}
                                                                    onTouchTap={() => dispatch(push(`goal/${goal._id}`))}
                                                                    rightIconButton={<IconMenu iconButtonElement={iconButtonElement}>
-                                                                            <MenuItem onTouchTap={() => onLogTime(goal)}>Log time</MenuItem>
-                                                                            <MenuItem onTouchTap={() => onDialogOpen(goal)}>Edit</MenuItem>
-                                                                            <MenuItem onTouchTap={() => onDeleteGoal(goal)}>Delete</MenuItem>
+                                                                            <MenuItem leftIcon={<Schedule/>} onTouchTap={() => onLogTime(goal)}>Log time</MenuItem>
+                                                                            <MenuItem leftIcon={<Create/>} onTouchTap={() => onDialogOpen(goal)}>Edit</MenuItem>
+                                                                            <MenuItem leftIcon={<Delete/>} onTouchTap={() => onDeleteGoal(goal)}>Delete</MenuItem>
                                                                         </IconMenu>}
                                                                    primaryText={goal.title}
                                                                    secondaryText={goal.description}/>)
