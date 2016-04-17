@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => render(
             <Route path="/" component={App}>
                 <IndexRoute component={GoalListPage}/>
                 <Route path="goals" component={GoalListPage}/>
-                <Route path="goal/*" component={GoalPage}/>
+                <Route path="goal/:goalId" component={GoalPage}/>
             </Route>
         </Router>
     </Provider>,
