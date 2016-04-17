@@ -46,12 +46,22 @@ export function saveGoal(goal) {
     }
 }
 
+export const GOAL_REMOVED = 'goal_removed';
+
+export function goalRemoved(goal) {
+    return {
+        type: GOAL_REMOVED,
+        payload: goal
+    }
+}
+
 export const REMOVE_GOAL = 'remove_goal';
 
 export function removeGoal(goal) {
     return (dispatch) => {
-        return deleteJson('http://192.168.1.239:3000/goals/' + goal.id)
-            .then(goals => dispatch(fetchGoals(goals)))
-            .catch(error => dispatch(receiveGoals([JSON.stringify(error)])));
+        dispatch({type: REMOVE_GOAL, payload: goal});
+        return deleteJson('http://192.168.1.239:3000/goals/' + goal._id, goal)
+            .then(goal => dispatch(goalRemoved(goal)))
+            .catch(error => dispatch(goalRemoved(goal)));
     }
 }

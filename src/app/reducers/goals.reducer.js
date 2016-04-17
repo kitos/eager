@@ -1,4 +1,4 @@
-import {RECEIVE_GOALS, REQUEST_GOALS, GOAL_SAVED} from '../actions/goals.actions';
+import {RECEIVE_GOALS, REQUEST_GOALS, GOAL_SAVED, GOAL_REMOVED} from '../actions/goals.actions';
 
 const initialState = {
     goals: [],
@@ -14,6 +14,8 @@ export default function goals(state = initialState, action) {
             return {...state, isFetching: false, isInited: true, goals: action.payload};
         case GOAL_SAVED:
             return {...state, goals: state.goals.concat([action.payload])};
+        case GOAL_REMOVED:
+            return {...state, goals: state.goals.filter(goal => goal._id !== action.payload._id)};
         default:
             return state;
     }

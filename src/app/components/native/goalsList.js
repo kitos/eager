@@ -17,7 +17,9 @@ const GoalsListComponent = ({goals, isFetching, isInited, onGoalClick, onNewGoal
             {isInited ? <ListView
                 dataSource={dataSource}
                 refreshControl={<RefreshControl progressBackgroundColor="#eee" enabled={true} refreshing={isFetching} onRefresh={onRefresh}/>}
-                renderRow={rawGoal => <GoalListItemComponent goal={rawGoal} onGoalPress={() => onGoalClick(rawGoal)} onRemoveGoalPress={() => onRemoveGoalClick(rawGoal)}/>}/>
+                renderRow={rawGoal => <GoalListItemComponent goal={rawGoal}
+                 onGoalPress={() => onGoalClick(rawGoal)}
+                 onRemoveGoalPress={() => onRemoveGoalClick(rawGoal)}/>}/>
                 : <StatusBar backgroundColor="#eee" barStyle="light-content"/>}
             <TouchableNativeFeedback onPress={onNewGoalClick}>
                 <View>
