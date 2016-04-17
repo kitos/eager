@@ -16,7 +16,8 @@ module.exports = () => {
         .post((request, response) => {
             (new Goal({
                 title: request.body.title,
-                description: request.body.description
+                description: request.body.description,
+                plannedDailyTime: request.body.plannedDailyTime
             }).save())
                 .then(goal => response.json(goal))
                 .catch(err => {
@@ -40,6 +41,7 @@ module.exports = () => {
                 .then(goal => {
                     goal.title = request.body.title;
                     goal.description = request.body.description;
+                    goal.plannedDailyTime = request.body.plannedDailyTime;
                     return goal.save();
                 })
                 .then(updatedGoal => response.json(updatedGoal))
@@ -60,7 +62,6 @@ module.exports = () => {
             Goal.findById(request.params.id)
                 .then(goal => {
                     goal.timelogs.push({
-                        /*_id: new mongoose.Types.ObjectId,*/
                         time: request.body.time,
                         date: request.body.date
                     });

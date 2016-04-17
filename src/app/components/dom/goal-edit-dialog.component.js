@@ -27,6 +27,8 @@ export default class GoalEditDialog extends React.Component {
                 <TextField floatingLabelText="Title" fullWidth={true} value={this.state.goal.title} onChange={e => this.handleTitleChange(e.target.value)}/>
                 <br/>
                 <TextField floatingLabelText="Description" fullWidth={true} value={this.state.goal.description} onChange={e => this.handleDescriptionChange(e.target.value)}/>
+                <br/>
+                <TextField floatingLabelText="Plan to spend daily" fillWidth={true} value={this.state.goal.plannedDailyTime} onChange={e => this.handlePlannedTimeChange(e.target.value)}/>
             </Dialog>
         );
     }
@@ -38,6 +40,11 @@ export default class GoalEditDialog extends React.Component {
 
     handleDescriptionChange(newDescription) {
         this.state.goal.description = newDescription;
+        this.setState(this.state);
+    }
+
+    handlePlannedTimeChange(newPlannedDailyTime){
+        this.state.goal.plannedDailyTime =  newPlannedDailyTime;
         this.setState(this.state);
     }
 }
