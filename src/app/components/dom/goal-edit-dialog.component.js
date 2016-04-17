@@ -8,25 +8,36 @@ export default class GoalEditDialog extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            title: props.title,
-            description: props.description
-        };
+        this.state = {goal: props.goal || {}};
+    }
+
+    componentWillReceiveProps(props) {
+        this.state = {goal: props.goal || {}};
     }
 
     render() {
         var actions = [
-            <FlatButton label="Save" primary={true} onTouchTap={() => this.props.onSubmit(this.state)}/>,
+            <FlatButton label="Save" primary={true} onTouchTap={() => this.props.onSubmit(this.state.goal)}/>,
             <FlatButton label="Cancel" onTouchTap={this.props.onDialogClose}/>
         ];
 
         return (
             <Dialog open={this.props.open} onRequestClose={this.props.onDialogClose}
                     actions={actions}>
-                <TextField floatingLabelText="Title" fullWidth={true} value={this.state.title} onChange={e => this.setState({title: e.target.value})}/>
+                <TextField floatingLabelText="Title" fullWidth={true} value={this.state.goal.title} onChange={e => this.handleTitleChange(e.target.value)}/>
                 <br/>
-                <TextField floatingLabelText="Description" fullWidth={true} value={this.state.description} onChange={e => this.setState({description: e.target.value})}/>
+                <TextField floatingLabelText="Description" fullWidth={true} value={this.state.goal.description} onChange={e => this.handleDescriptionChange(e.target.value)}/>
             </Dialog>
         );
+    }
+
+    handleTitleChange(newTitle) {
+        this.state.goal.title = newTitle;
+        this.setState(this.state);
+    }
+
+    handleDescriptionChange(newDescription) {
+        this.state.goal.description = newDescription;
+        this.setState(this.state);
     }
 }

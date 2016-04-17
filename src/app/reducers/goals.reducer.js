@@ -13,7 +13,15 @@ export default function goals(state = initialState, action) {
         case RECEIVE_GOALS:
             return {...state, isFetching: false, isInited: true, goals: action.payload};
         case GOAL_SAVED:
-            return {...state, goals: state.goals.concat([action.payload])};
+            var itemHasBeenAdded = true;
+            var newGoals = state.goals.map(g => {
+                if (g._id === action.payload._id) {
+                    itemHasBeenAdded = false;
+                    return {...g, ...action.payload};
+                }
+                return g;
+            });
+            return {...state, goals: itemHasBeenAdded ? state.goals.concat([action.payload]) : newGoals};
         case GOAL_REMOVED:
             return {...state, goals: state.goals.filter(goal => goal._id !== action.payload._id)};
         default:

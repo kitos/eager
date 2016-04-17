@@ -10,25 +10,38 @@ import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import Star from 'material-ui/lib/svg-icons/toggle/star';
 import Add from 'material-ui/lib/svg-icons/content/add';
 import Delete from 'material-ui/lib/svg-icons/action/delete';
+import Colors from 'material-ui/lib/styles/colors';
+import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
+import IconMenu from 'material-ui/lib/menus/icon-menu';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 import GoalEditDialog from './goal-edit-dialog.component';
 
 import {saveGoal, removeGoal} from './../../actions/goals.actions';
-import {closeNewGoalDialog, openNewGoalDialog} from './../../actions/new-goal-dialog.actions';
+import {closeNewGoalDialog, openNewGoalDialog} from './../../actions/goal-dialog.actions.js';
+
+const iconButtonElement = (
+    <IconButton touch={true}>
+        <MoreVertIcon color={Colors.grey400}/>
+    </IconButton>
+);
 
 const AppComponent = ({goals, isFetching, onDeleteGoal, newGoal, onDialogClose, onDialogOpen, onSaveGoal}) => (
     <div>
         <AppBar title="Eager" showMenuIconButton={false}/>
         <List>
             {!goals.isFetching ? goals.goals.map(goal => <ListItem key={goal._id}
-                                                       leftIcon={<Star/>}
-                                                       rightIconButton={<IconButton onTouchTap={() => onDeleteGoal(goal)}><Delete/></IconButton>}
-                                                       primaryText={goal.title}
-                                                       secondaryText={goal.description}/>)
+                                                                   leftIcon={<Star/>}
+                                                                   rightIconButton={<IconMenu iconButtonElement={iconButtonElement}>
+                                                                            <MenuItem onTouchTap={() => onDialogOpen(goal)}>Edit</MenuItem>
+                                                                            <MenuItem onTouchTap={() => onDeleteGoal(goal)}>Delete</MenuItem>
+                                                                        </IconMenu>}
+                                                                   primaryText={goal.title}
+                                                                   secondaryText={goal.description}/>)
                 : ''}
         </List>
-        <GoalEditDialog open={newGoal.open} onDialogClose={onDialogClose} onSubmit={onSaveGoal}/>
-        <FloatingActionButton style={{position: 'fixed', right: 50, bottom: 50}} onTouchTap={onDialogOpen}>
+        <GoalEditDialog open={newGoal.open} goal={newGoal.goal} onDialogClose={onDialogClose} onSubmit={onSaveGoal}/>
+        <FloatingActionButton style={{position: 'fixed', right: 50, bottom: 50}} onTouchTap={() => onDialogOpen()}>
             <Add/>
         </FloatingActionButton>
     </div>
@@ -38,7 +51,7 @@ export default connect(
     state => state,
     dispatch => {
         return {
-            onDialogOpen: () => dispatch(openNewGoalDialog()),
+            onDialogOpen: goal => dispatch(openNewGoalDialog(goal)),
             onDialogClose: () => dispatch(closeNewGoalDialog()),
             onSaveGoal: goal => dispatch(saveGoal(goal)),
             onDeleteGoal: goal => dispatch(removeGoal(goal))

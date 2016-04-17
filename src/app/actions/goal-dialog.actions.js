@@ -1,8 +1,9 @@
 export const OPEN_NEW_GOAL_DIALOG = 'open_new_goal_dialog';
 
-export function openNewGoalDialog() {
+export function openNewGoalDialog(goal) {
     return {
-        type: OPEN_NEW_GOAL_DIALOG
+        type: OPEN_NEW_GOAL_DIALOG,
+        payload: goal
     }
 }
 
