@@ -48,7 +48,7 @@ module.exports = () => {
                     response.send(err);
                 })
         })
-        .delete((request, response) => Goal.findOneAndRemove(request.params.id).exec()
+        .delete((request, response) => Goal.findByIdAndRemove(request.params.id).exec()
             .then(goal => response.json(goal))
             .catch(err => {
                 response.status(500);

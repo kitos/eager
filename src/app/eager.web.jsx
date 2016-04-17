@@ -10,6 +10,7 @@ import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 
 import goalsReducer from './reducers/goals.reducer';
+import newGoal from './reducers/new-goal-dialog.reducer';
 import {fetchGoals} from './actions/goals.actions';
 
 import App from './components/dom/app.component';
@@ -22,6 +23,7 @@ const middleware = routerMiddleware(browserHistory);
 let store = createStore(
     combineReducers({
         goals: goalsReducer,
+        newGoal,
         routing: routerReducer
     }),
     applyMiddleware(thunkMiddleware, middleware)
